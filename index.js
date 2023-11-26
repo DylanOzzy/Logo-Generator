@@ -16,7 +16,7 @@ class Circle extends Shape {
   render() {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <circle cx="150" cy="100" r="80" fill="${this.userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">${this.userData.logoText}</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">"${this.userData.logoText}"</text>
       </svg>`;
   }
 }
@@ -25,7 +25,7 @@ class Square extends Shape {
   render() {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="300" fill="${this.userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">${this.userData.logoText}</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">"${this.userData.logoText}"</text>
       </svg>`;
   }
 }
@@ -34,7 +34,7 @@ class Triangle extends Shape {
   render() {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <polygon points="150,20 280,180 20,180" fill="${this.userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">${this.userData.logoText}</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.userData.textColor}">"${this.userData.logoText}"</text>
       </svg>`;
   }
 }
@@ -79,29 +79,34 @@ const promptUser = async () => {
 };
 
 const handleSaveSVG = async () => {
-  const userData = await promptUser();
+  try {
+    const userData = await promptUser();
 
-  let shape;
-  switch (userData.shape) {
-    case "Circle":
-      shape = new Circle(userData);
-      break;
-    case "Square":
-      shape = new Square(userData);
-      break;
-    case "Triangle":
-      shape = new Triangle(userData);
-      break;
-    default:
-      throw new Error("Invalid shape");
+    let shape;
+    switch (userData.shape) {
+      case "Circle":
+        shape = new Circle(userData);
+        break;
+      case "Square":
+        shape = new Square(userData);
+        break;
+      case "Triangle":
+        shape = new Triangle(userData);
+        break;
+    }
+
+    const logoSVG = shape.render();
+    const saveSVG = './output/';
+    const fileName = `${userData.logoText}.svg`;
+    const saveSVGPath = path.join(__dirname, saveSVG, `${fileName}`);
+    await fs.writeFile(saveSVGPath, logoSVG);
+    console.log(`SVG saved to: ${saveSVGPath}`);
+  } catch (error) {
+    console.error("Error handling SVG:", error);
   }
-
-  const logoSVG = shape.render();
-  const saveSVG = './output/';
-  const fileName = `${userData.logoText}.svg`;
-  const saveSVGPath = path.join(__dirname, saveSVG, `${fileName}`);
-  await fs.writeFile(saveSVGPath, logoSVG);
-  console.log(`SVG saved to: ${saveSVGPath}`);
 };
 
 handleSaveSVG();
+
+
+module.exports = { Shape, Circle, Square, Triangle };
