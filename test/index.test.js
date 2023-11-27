@@ -15,7 +15,7 @@ describe("Shape", () => {
       // Fix the quotes around "ABC" in the expected string
       const expectedSVG = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <circle cx="150" cy="100" r="80" fill="${userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">"${userData.logoText}"</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">${userData.logoText}</text>
       </svg>`;
 
       expect(renderedSVG).toEqual(expectedSVG);
@@ -34,7 +34,7 @@ describe("Shape", () => {
       const renderedSVG = square.render();
       const expectedSVG = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="300" fill="${userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">"${userData.logoText}"</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">${userData.logoText}</text>
       </svg>`;
       expect(renderedSVG).toEqual(expectedSVG);
     });
@@ -52,7 +52,7 @@ describe("Shape", () => {
       const renderedSVG = triangle.render();
       const expectedSVG = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <polygon points="150,20 280,180 20,180" fill="${userData.shapeColor}" />
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">"${userData.logoText}"</text>
+        <text x="150" y="125" font-size="60" text-anchor="middle" fill="${userData.textColor}">${userData.logoText}</text>
       </svg>`;
       expect(renderedSVG).toEqual(expectedSVG);
     });
