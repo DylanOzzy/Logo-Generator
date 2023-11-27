@@ -73,7 +73,6 @@ const promptUser = async () => {
       },
     ])
     .then((data) => {
-      console.log(data);
       return data;
     });
 };
@@ -97,10 +96,10 @@ const handleSaveSVG = async () => {
 
     const logoSVG = shape.render();
     const saveSVG = './output/';
-    const fileName = `${userData.logoText}.svg`;
+    const fileName = `logo.svg`;
     const saveSVGPath = path.join(__dirname, saveSVG, `${fileName}`);
     await fs.writeFile(saveSVGPath, logoSVG);
-    console.log(`SVG saved to: ${saveSVGPath}`);
+    console.log("Generated logo.svg");
   } catch (error) {
     console.error("Error handling SVG:", error);
   }
