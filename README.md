@@ -27,7 +27,7 @@ I made this Command Line Interface (CLI) for the purpose of saving the time of g
 
 ## Video/Repository
 
-- [Logo Generator Demonstration]()
+- [Logo Generator Demonstration](https://drive.google.com/file/d/1t0R8oEWubnDZKijtHET5RTOXTyXuOjo-/view)
 
 - [Logo Generator Repository](https://github.com/DylanOzzy/Logo-Generator)
 
